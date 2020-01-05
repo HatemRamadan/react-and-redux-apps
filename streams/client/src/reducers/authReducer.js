@@ -4,10 +4,8 @@ const INIT_STATE = {
 };
 
 export default (state = INIT_STATE, action) => {
-  console.log(action.type + action.payload);
   switch (action.type) {
     case "SIGN_IN": {
-      console.log("in herererererer " + action.payload);
       return { ...state, isSignedIn: true, userId: action.payload };
     }
     case "SIGN_OUT":

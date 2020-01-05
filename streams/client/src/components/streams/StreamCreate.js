@@ -1,6 +1,8 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
 
+import { createStream } from "../../actions";
 class StreamCreate extends React.Component {
   renderInput(formProps) {
     return (
@@ -11,7 +13,9 @@ class StreamCreate extends React.Component {
     );
   }
 
-  onSubmit(formValues) {}
+  onSubmit = formValues => {
+    this.props.createStream(formValues);
+  };
   render() {
     return (
       <form
@@ -28,12 +32,16 @@ class StreamCreate extends React.Component {
           component={this.renderInput}
           label="Enter Description"
         ></Field>
-        <button type="submit" className="ui button primary"></button>
+        <button type="submit" className="ui button primary">
+          Submit
+        </button>
       </form>
     );
   }
 }
 
-export default reduxForm({
-  form: "streamCreate"
-})(StreamCreate);
+export default connect(null, { createStream })(
+  reduxForm({
+    form: "streamCreate"
+  })(StreamCreate)
+);
